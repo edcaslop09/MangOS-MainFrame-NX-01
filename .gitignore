@@ -1,0 +1,10 @@
+**/__pycache__/
+*.py[cod]
+.vscode/
+
+songs/*/song.mp3
+songs/*/*.mp3
+songs/*/*.wav
+songs/*/*.flac
+
+playlists/
