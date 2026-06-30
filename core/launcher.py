@@ -1,6 +1,7 @@
-from music import music_core
-import sys
 
+from apps.static_records import static_records_core
+import sys
+import keyboard
 
 def menu_launcher():
 
@@ -25,23 +26,26 @@ def menu_launcher():
 def elegir_modulo():
         opcion = menu_launcher()
         if opcion == 1:
-            music_core.iniciar()
+            static_records_core.iniciar()
         if opcion == 2:
             print("Modulo en Desarollo")
+            input("Presiona Enter para continuar...")
             return  
         if opcion == 3:
             print("Modulo en Desarollo")
+            input("Presiona Enter para continuar...")
             return 
         if opcion == 4:
             print("Modulo en Desarollo")
+            input("Presiona Enter para continuar...")
             return
         if opcion == 5:
             print("Modulo en Desarollo")
+            input("Presiona Enter para continuar...")
             return 
         if opcion == 6:
             sys.exit()
 
 def iniciar():
     while True:
-        menu_launcher()
         elegir_modulo()

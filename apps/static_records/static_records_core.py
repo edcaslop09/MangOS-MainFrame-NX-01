@@ -1,14 +1,14 @@
 import time
 import keyboard
 import sys 
-from music.biblioteca import Biblioteca
-from music.reproductor import Reproductor
-from music import music_menu
+from .biblioteca import Biblioteca
+from .reproductor import Reproductor
+from . import static_records_menu
 
 
 def iniciar():
-    biblioteca = Biblioteca("songs") #VARIABLE/OBJETO: ES LA BIBLIOTECA DE CANCIONES DISPONIBLES DESDE LA CARPETA "SONGS".
-    cancion_escogida = music_menu.elegir_cancion(biblioteca) #---VARIABLE: ESTA ES CANCION_ESCOGIDA POR EL USUARIO.
+    biblioteca = Biblioteca("data/static_records") #VARIABLE/OBJETO: ES LA BIBLIOTECA DE CANCIONES DISPONIBLES DESDE LA CARPETA "SONGS".
+    cancion_escogida = static_records_menu.elegir_cancion(biblioteca) #---VARIABLE: ESTA ES CANCION_ESCOGIDA POR EL USUARIO.
     
     if cancion_escogida == None:
         return

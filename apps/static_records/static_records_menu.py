@@ -42,22 +42,48 @@ def seleccionar_cancion(lista_canciones):
             return lista_canciones[indice_real]
             
 def elegir_cancion(biblioteca):
-    opcion = menu_principal()
+    while True:
+        opcion = menu_principal()
+        
+        if opcion == 1:
+            seleccion = seleccionar_cancion(biblioteca.canciones)
+            if seleccion:
+                return seleccion
+            elif not seleccion:
+                continue
+        
+        if opcion == 2:
+            texto_busqueda = input("ingresa texto de busqueda: ")
+            texto_busqueda = str(texto_busqueda)
+            resultados = biblioteca.buscar(texto_busqueda)
+            if resultados:
+                return seleccionar_cancion(resultados)
+            elif not resultados:
+                print("No se han encontrado ningun resultados.")
+                input("Presiona Enter para continuar...")
+                continue 
+
+        if opcion == 3:
+            favoritas = biblioteca.obtener_favoritas()
+            if favoritas:
+                return seleccionar_cancion(favoritas)
+            elif not favoritas:
+                print("No se han encontrado ningun resultados.")
+                input("Presiona Enter para continuar...")
+                continue 
+        
+        if opcion == 4:
+            aleatorio = biblioteca.obtener_aleatoria()
+
+            if aleatorio:
+                return seleccionar_cancion(aleatorio)
+            elif not aleatorio:
+                print("No se han encontrado ningun resultados.")
+                input("Presiona Enter para continuar...")
+                continue 
+        
+        
+        if opcion == 5:
+            return None
+
     
-    if opcion == 1:
-        return seleccionar_cancion(biblioteca.canciones)
-    
-    if opcion == 2:
-        texto_busqueda = input("ingresa texto de busqueda: ")
-        texto_busqueda = str(texto_busqueda)
-        resultados = biblioteca.buscar(texto_busqueda)
-        return seleccionar_cancion(resultados)
-    
-    if opcion == 3:
-        favoritas = biblioteca.obtener_favoritas()
-        return seleccionar_cancion(favoritas)
-    
-    if opcion == 4:
-        return biblioteca.obtener_aleatoria()
-    if opcion == 5:
-        return None

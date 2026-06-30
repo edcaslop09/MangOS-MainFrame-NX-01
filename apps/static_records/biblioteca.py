@@ -1,12 +1,14 @@
 import os 
 import random 
 from .song import Cancion
+from data import static_records
+
 
 class Biblioteca:
     
-    def __init__(self,songs):
+    def __init__(self,ruta_data_static_records):
         
-        self.ruta_biblioteca = songs
+        self.ruta_biblioteca = ruta_data_static_records
         self.cargar_canciones()
         self.construir_indices()
 
@@ -15,7 +17,7 @@ class Biblioteca:
         self.indice_genero = self.construir_indices_genero()
         self.indice_artista = self.construir_indices_artista()
         self.indice_album = self.construir_indices_album()
-        self.indice_titulo = self.construir_indices_titulo
+        self.indice_titulo = self.construir_indices_titulo()
     
 
     def construir_indices_genero(self):
@@ -67,6 +69,20 @@ class Biblioteca:
         for cancion in canciones:
             ruta_cancion = os.path.join(self.ruta_biblioteca, cancion)
             if os.path.isdir(ruta_cancion):
+                ruta_mp3 = os.path.join(ruta_cancion,"song.mp3")
+                ruta_lrc = os.path.join(ruta_cancion,"lyrics.lrc")
+                ruta_metadata = os.path.join(ruta_cancion,"metadata.json")
+                ruta_colores = os.path.join(ruta_cancion,"colors.json")
+
+                if not  os.path.exists(ruta_mp3):
+                    continue 
+                if not os.path.exists(ruta_lrc):
+                    continue
+                if not os.path.exists(ruta_metadata):
+                    continue
+                if not os.path.exists(ruta_colores):
+                    continue 
+
                 objeto_cancion = Cancion(ruta_cancion) 
                 self.canciones.append(objeto_cancion)
         self.ordenar_canciones()

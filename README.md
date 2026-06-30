@@ -9,3 +9,4 @@ The project follows a **local-first philosophy**: every core feature works compl
 MangOS is currently under active development as the foundation for a portable cyberdeck powered by Python.
 
 
+## Project Structure
