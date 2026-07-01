@@ -1,7 +1,9 @@
-
+from . import playlist_menu 
 def menu_principal():
-    opciones_menu = ["Ver canciones","Buscar canción","Favoritas","Aleatoria","Salir"]
+    titulo = "---------- STATIC RECORDS----------"
+    opciones_menu = ["Ver canciones","Buscar canción","Playlists","Favoritas","Aleatoria","Salir"]
     
+    print(titulo)
     for (index,opcion) in enumerate(opciones_menu, start=1):
         print(f"[{index}] {opcion}")
         
@@ -62,8 +64,12 @@ def elegir_cancion(biblioteca):
                 print("No se han encontrado ningun resultados.")
                 input("Presiona Enter para continuar...")
                 continue 
-
+        
         if opcion == 3:
+            playlist_menu.iniciar()
+            continue
+
+        if opcion == 4:
             favoritas = biblioteca.obtener_favoritas()
             if favoritas:
                 return seleccionar_cancion(favoritas)
@@ -72,7 +78,7 @@ def elegir_cancion(biblioteca):
                 input("Presiona Enter para continuar...")
                 continue 
         
-        if opcion == 4:
+        if opcion == 5:
             aleatorio = biblioteca.obtener_aleatoria()
 
             if aleatorio:
@@ -83,7 +89,7 @@ def elegir_cancion(biblioteca):
                 continue 
         
         
-        if opcion == 5:
+        if opcion == 6:
             return None
 
     

@@ -1,12 +1,14 @@
 
 from apps.static_records import static_records_core
 import sys
-import keyboard
+
 
 def menu_launcher():
-
+    titulo = "---------- MangOS Main Menú----------"
     opciones_menu = ["STATIC RECORDS","NOTAS","FILES","AI","SETTINGS","SALIR"]
     
+    print(titulo)
+
     for (index,opcion) in enumerate(opciones_menu, start=1):
         print(f"[{index}] {opcion}")
         
