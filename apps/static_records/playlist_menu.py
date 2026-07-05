@@ -94,3 +94,71 @@ def iniciar():
 
         elif opcion == 4:
             return 
+
+def agregar_cancion_a_playlist(cancion):
+
+    manager = PlaylistManager()
+
+    playlists = manager.obtener_playlists()
+
+    if not playlists:
+        print("No hay playlists creadas.")
+        return False
+    print("---------- PLAYLISTS ----------")
+    for (index,playlist) in enumerate(playlists, start=1):
+        print(f"[{index}] {playlist.nombre} - {playlist.cantidad()}")
+
+    while True:
+
+        try:
+            respuesta_usuario = int(input("Selecciona alguna de las opciones del menú: "))
+        except ValueError:
+            print("Ingrese una opción valida.")
+            continue 
+
+        if respuesta_usuario < 1 or respuesta_usuario > len(playlists):
+            print("Ingrese una opción valida.")
+            continue 
+
+        indice_real = respuesta_usuario - 1
+        playlist_elegida = playlists[indice_real]
+
+        playlist_elegida.agregar_cancion(cancion)
+        playlist_elegida.guardar()
+
+        print(f"Canción agregada a {playlist_elegida.nombre}.")
+        return True
+
+def seleccionar_playlist():
+    manager = PlaylistManager()
+
+    playlists = manager.obtener_playlists()
+
+    if not playlists:
+        print("No se ha encontrado ninguna playlist.")
+        return None
+    print("---------- PLAYLISTS ----------")
+
+    for (index,playlist) in enumerate(playlists,start=1):
+        print(f"[{index}] {playlist.nombre}")
+
+    while True:
+        try:
+            respuesta_usuario = input("Selecciona una de las opciones del menu: ")
+            opcion = int(respuesta_usuario)
+        except ValueError:
+            print("Ingrese una opción valida.")
+            continue
+        if opcion < 1 or opcion > len(playlists):
+            print("Ingrese una opción valida.")
+            continue
+
+        indice_real = opcion -1 
+        playlist_elegida = playlists[indice_real]
+
+        return playlist_elegida
+
+    
+
+
+

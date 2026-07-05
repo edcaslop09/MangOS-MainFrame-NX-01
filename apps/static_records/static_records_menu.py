@@ -1,7 +1,8 @@
 from . import playlist_menu 
+from . import filter_menu
 def menu_principal():
     titulo = "---------- STATIC RECORDS----------"
-    opciones_menu = ["Ver canciones","Buscar canción","Playlists","Favoritas","Aleatoria","Salir"]
+    opciones_menu = ["Ver canciones","Buscar canción","Playlists","Reproducir playlist","Audio Filters","Favoritas","Aleatoria","Salir"]
     
     print(titulo)
     for (index,opcion) in enumerate(opciones_menu, start=1):
@@ -42,15 +43,52 @@ def seleccionar_cancion(lista_canciones):
             indice_real = respuesta_usuario-1
                 
             return lista_canciones[indice_real]
-            
-def elegir_cancion(biblioteca):
+
+def acciones_cancion(cancion):
+    opciones = ["Reproducir","Agregar a playlist","Regresar"]
+    
+
+    print("---------- CANCIÓN ----------")
+
+    for (index,opcion) in enumerate(opciones,start=1):
+        print(f"[{index}] {opcion}")
+
+    while True:
+        try:
+            respuesta_usuario = (input("Seleccione una opción del menú: "))
+            opcion =int(respuesta_usuario)
+        except ValueError:
+            print("Ingrese una opción valida.")
+            continue
+        if opcion < 1 or opcion > len(opciones):
+            print("Ingrese una opción valida.")
+            continue
+    
+        if opcion == 1:
+            return cancion
+
+        if opcion == 2:
+            playlist_menu.agregar_cancion_a_playlist(cancion)
+            input("Presiona Enter para continuar...")
+            return None
+
+        if opcion == 3:
+            return None
+
+
+
+def seleccionar_elemento(biblioteca):
     while True:
         opcion = menu_principal()
         
         if opcion == 1:
             seleccion = seleccionar_cancion(biblioteca.canciones)
+
             if seleccion:
-                return seleccion
+                resultado = acciones_cancion(seleccion)
+                if resultado:
+                    return resultado
+                
             elif not seleccion:
                 continue
         
@@ -58,8 +96,15 @@ def elegir_cancion(biblioteca):
             texto_busqueda = input("ingresa texto de busqueda: ")
             texto_busqueda = str(texto_busqueda)
             resultados = biblioteca.buscar(texto_busqueda)
+
             if resultados:
-                return seleccionar_cancion(resultados)
+                seleccion = seleccionar_cancion(resultados)
+
+                if seleccion:
+                    resultado = acciones_cancion(seleccion)
+                    if resultado:
+                        return resultado
+                    
             elif not resultados:
                 print("No se han encontrado ningun resultados.")
                 input("Presiona Enter para continuar...")
@@ -70,26 +115,50 @@ def elegir_cancion(biblioteca):
             continue
 
         if opcion == 4:
+            playlist = playlist_menu.seleccionar_playlist()
+
+            if playlist:
+                return playlist
+            continue
+
+        if opcion == 5:
+            filter_menu.iniciar()
+            continue 
+
+        if opcion == 6:
             favoritas = biblioteca.obtener_favoritas()
+
             if favoritas:
-                return seleccionar_cancion(favoritas)
+                favoritas = seleccionar_cancion(resultados)
+                
+                if favoritas:
+                    seleccion = acciones_cancion(seleccion)
+                    if seleccion:
+                        return seleccion
+                    
             elif not favoritas:
                 print("No se han encontrado ningun resultados.")
                 input("Presiona Enter para continuar...")
                 continue 
         
-        if opcion == 5:
+        if opcion == 7:
             aleatorio = biblioteca.obtener_aleatoria()
 
             if aleatorio:
-                return seleccionar_cancion(aleatorio)
+                resultado = acciones_cancion(aleatorio)
+
+                if resultado:
+                    return resultado
+
+                else:
+                    continue
+
             elif not aleatorio:
                 print("No se han encontrado ningun resultados.")
                 input("Presiona Enter para continuar...")
                 continue 
         
         
-        if opcion == 6:
+        if opcion == 8:
             return None
 
-    
