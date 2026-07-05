@@ -41,7 +41,7 @@ class Cancion:
     def __init__(self,carpeta):
         self.carpeta = carpeta 
         
-        self.ruta_mp3 = os.path.join(carpeta, "song.mp3")
+        self.ruta_audio = self.buscar_audio()
         self.ruta_lrc = os.path.join(carpeta, "lyrics.lrc")
         self.ruta_colores = os.path.join(carpeta, "colors.json") 
         self.ruta_metadata = os.path.join(carpeta, "metadata.json")
@@ -60,7 +60,25 @@ class Cancion:
         self.veces_reproducida = self.metadata.get("veces_reproducida", 0)
         
         self.reproduccion_contada = False
-        
+
+    def buscar_audio(self):
+        archivos_audio = [
+            "original.flac",
+            "song.flac",
+            "song.wav",
+            "song.mp3"
+        ]
+
+        for archivo_audio in archivos_audio:
+            ruta = os.path.join(self.carpeta, archivo_audio)
+
+            if os.path.exists(ruta):
+                return ruta
+        return None
+
+    def tiene_audio(self):
+        return self.ruta_audio is not None
+    
     def __str__(self):
     
         return f"{self.titulo} - {self.nombre_artistas}"

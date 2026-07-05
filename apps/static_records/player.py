@@ -1,36 +1,56 @@
-import pygame
-from mutagen.mp3 import MP3
+from .audio_engine import AudioEngine
 
+
+engine = AudioEngine()
 
 def iniciar_player():
-    pygame.mixer.init()
+    return True
 
 def reproducir_cancion(cancion):
-    pygame.mixer.music.load(cancion.ruta_mp3)
-    pygame.mixer.music.play()
+    if cancion.ruta_audio == None:
+        return False
+    resultado = engine.reproducir_archivo(cancion.ruta_audio,esperar=False)
+
+    return resultado
 
 def detener_cancion():
-    pygame.mixer.music.stop()
+    engine.detener()
+
 
 
 def obtener_tiempo_actual():
-    return pygame.mixer.music.get_pos() / 1000.0
+    return engine.obtener_tiempo()
 
 def obtener_duracion(cancion):
-    audio = MP3(cancion.ruta_mp3)
-    return audio.info.length
+    if cancion.ruta_audio == None:
+        return 0
+    
+    resultado = engine.obtener_info(cancion.ruta_audio)
+
+    if resultado == None:
+        return 0
+
+    return  resultado["duracion"]
+
+
+
+def esta_reproduciendo():
+    return engine.esta_reproduciendo()
+
+def pausar():
+    return False
+
+def reanudar():
+    return False
 
 def musica_activa():
-    return pygame.mixer.music.get_busy()
+    return engine.esta_reproduciendo()
 
 def pausar_cancion():
-    pygame.mixer.music.pause()
+    pausar()
 
 def reanudar_cancion():
-    pygame.mixer.music.unpause()
-
-
-
+    reanudar()
 
 
     

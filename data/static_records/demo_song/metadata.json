@@ -1,0 +1,10 @@
+{
+    "album": "Static Records Lab",
+    "artistas": [
+        "MangOS"
+    ],
+    "favorita": false,
+    "genero": "Test Audio",
+    "titulo": "Rich FLAC Test",
+    "veces_reproducida": 3
+}

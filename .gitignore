@@ -8,3 +8,7 @@ songs/*/*.wav
 songs/*/*.flac
 
 playlists/
+
+#Audio engine local experiments 
+labs/
+data/static_records/test_audio/

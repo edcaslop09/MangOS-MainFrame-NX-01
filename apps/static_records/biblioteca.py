@@ -4,6 +4,7 @@ from .song import Cancion
 from data import static_records
 
 
+
 class Biblioteca:
     
     def __init__(self,ruta_data_static_records):
@@ -64,18 +65,21 @@ class Biblioteca:
         
         self.canciones= []
         
-        canciones = os.listdir(self.ruta_biblioteca)
+        data  = os.listdir(self.ruta_biblioteca)
+        carpetas_a_ignorar = {"playlists", "test_audio"}
+
         
-        for cancion in canciones:
-            ruta_cancion = os.path.join(self.ruta_biblioteca, cancion)
+        
+        for carpeta in data:
+            if carpeta in carpetas_a_ignorar:
+                continue
+            ruta_cancion = os.path.join(self.ruta_biblioteca, carpeta)
             if os.path.isdir(ruta_cancion):
-                ruta_mp3 = os.path.join(ruta_cancion,"song.mp3")
+                
                 ruta_lrc = os.path.join(ruta_cancion,"lyrics.lrc")
                 ruta_metadata = os.path.join(ruta_cancion,"metadata.json")
                 ruta_colores = os.path.join(ruta_cancion,"colors.json")
 
-                if not  os.path.exists(ruta_mp3):
-                    continue 
                 if not os.path.exists(ruta_lrc):
                     continue
                 if not os.path.exists(ruta_metadata):
@@ -84,6 +88,10 @@ class Biblioteca:
                     continue 
 
                 objeto_cancion = Cancion(ruta_cancion) 
+
+                if not objeto_cancion.tiene_audio():
+                    continue
+
                 self.canciones.append(objeto_cancion)
         self.ordenar_canciones()
         
