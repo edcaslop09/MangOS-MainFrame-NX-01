@@ -30,13 +30,12 @@ def seleccionar_elemento(titulo, elementos, texto_vacio="No hay elementos."):
 
     return elemento_elegido
 
-def esperar_enter():
+def esperar_enter(mensaje="Presiona Enter para continuar..."):
     while True:
-
-        respuesta = input("Presiona Enter para continuar...")
+        respuesta = input(mensaje)
 
         if not respuesta:
-            return 
+            return
 
         print("Solo presiona Enter.")
 
