@@ -1,8 +1,10 @@
 from . import playlist_menu 
 from . import filter_menu
+from . import vinyl_black_fm
+
 def menu_principal():
     titulo = "---------- STATIC RECORDS----------"
-    opciones_menu = ["Ver canciones","Buscar canción","Playlists","Reproducir playlist","Audio Filters","Favoritas","Aleatoria","Salir"]
+    opciones_menu = ["Ver canciones","Buscar canción","Playlists","Reproducir playlist","Audio Filters","Favoritas","Aleatoria","Vinyl Black.FM","Salir"]
     
     print(titulo)
     for (index,opcion) in enumerate(opciones_menu, start=1):
@@ -158,7 +160,10 @@ def seleccionar_elemento(biblioteca):
                 input("Presiona Enter para continuar...")
                 continue 
         
-        
         if opcion == 8:
+            vinyl_black_fm.iniciar()
+            continue
+
+        if opcion == 9:
             return None
 
