@@ -1,3 +1,4 @@
-from core import launcher
+from core.boot_manager import iniciar_mangos
 
-launcher.iniciar()
+iniciar_mangos()
+

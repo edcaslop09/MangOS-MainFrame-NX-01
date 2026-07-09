@@ -1,0 +1,25 @@
+{
+    "system_name": "MangOS MainFrame NX-01",
+    "system_version": "0.1",
+    "boot_mode": "development",
+    "show_boot_sequence": true,
+    "startup_services":{
+        "static_records":{
+            "enabled": true,
+            "autoload": true
+        },
+
+        "vinyl_black_fm": {
+            "enabled": true,
+            "autostart": false,
+            "muted": true,
+            "default_playlist": null
+        },
+
+        "module_bay": {
+            "enabled": true,
+            "autoload": false
+        }
+    }
+
+}
