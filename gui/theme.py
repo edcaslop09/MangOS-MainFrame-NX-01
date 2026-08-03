@@ -59,4 +59,23 @@ def get_stylesheet():
         backrground-color: #F77F00;
         color: #050505;
     }
+
+    QLineEdit,QTextEdit, QListWidget {
+        background-color : #080808;
+        color: #EAE2B7;
+        border: 1px solid #F77F00;
+        border-radius: 6px;
+        padding: 8px;
+        selection-background-color: #F77F00;
+        selection-color: #050505;
+    }
+
+    QListWidget::item {
+        padding: 8px;
+    }
+
+    QListWidget::item:selected {
+        background-color: #F77F00;
+        color: #050505;
+    }
     """

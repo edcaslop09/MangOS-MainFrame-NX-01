@@ -2,6 +2,7 @@ from PySide6.QtWidgets import QMainWindow, QStackedWidget
 
 from gui.pages.dashboard_page import DashboardPage
 from gui.pages.simple_page import SimplePage
+from gui.pages.notes_page import NotesPage
 
 class MainWindow(QMainWindow):
 
@@ -44,15 +45,8 @@ class MainWindow(QMainWindow):
             volver_callback= self.mostrar_dashboard,
         )
 
-        self.notes_page = SimplePage(
-            titulo = "NOTES",
-            subtitulo = "Local Notes App",
-            descripcion=(
-                "Notes will be a simple local-first app for writting, saving, "
-                "reading and deleting notes inside MangOS."
-            ),
-            volver_callback= self.mostrar_dashboard,
-        )
+        self.notes_page = NotesPage(
+            volver_callback=self.mostrar_dashboard,)
 
         self.status_page = SimplePage(
                     titulo = "SYSTEM STATUS",
